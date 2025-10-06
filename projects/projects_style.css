@@ -1,0 +1,18 @@
+@import "../style.css";
+
+.projects {
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+}
+
+h2 {
+  margin: 0;
+}
+
