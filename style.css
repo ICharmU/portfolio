@@ -1,3 +1,8 @@
+* {
+  margin-top: 0;
+}
+
+
 :root {
   --color-accent: oklch(0.4667 0.2089 275);
   --background-color-accent: oklch(0.939 0.0326 275);
@@ -16,7 +21,7 @@ body {
   accent-color: var(--color-accent);
   font: 100%/1.5 system-ui;
   max-width: 100ch;
-  margin-inline: auto;
+  margin-inline: max(1em, (100% - 100ch) / 2);
 }
 
 img {
@@ -25,7 +30,7 @@ img {
 
 nav {
   display: flex;
-  margin-bottom: 0px;
+  margin-bottom: 32px;
   border-bottom: 1px solid oklch(0.8 0.03 200);
 }
 

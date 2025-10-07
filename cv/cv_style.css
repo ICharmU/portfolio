@@ -1,9 +1,5 @@
 @import url("../style.css");
 
-* {
-  margin: 0;
-}
-
 body {
   padding-bottom: 50px;
   margin-top: 8px;
@@ -31,7 +27,6 @@ h4.year {
   grid-template-columns: 4fr 1fr;
   grid-column: 1/-1;
   text-align: left;
-  margin-top: none;
 }
 
 h5 {
@@ -59,7 +54,6 @@ h4.year > time {
   font-style: italic;
   font-weight: normal;
   font-size: 20px;
-  margin-top: 0px;
   margin-bottom: 12px;
 }
 
@@ -93,10 +87,6 @@ h4.year > time {
   p {
     margin-top: -4px;
   }
-}
-
-.resume {
-  margin-top: 40px;
 }
 
 
