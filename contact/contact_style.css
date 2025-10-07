@@ -1,0 +1,21 @@
+@import url("../style.css");
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1/-1;
+}
+
+button {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-column: 1/-1;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

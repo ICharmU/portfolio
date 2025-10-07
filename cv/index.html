@@ -7,8 +7,8 @@ add date time format to time labels
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume and Coursework</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Resume/CV</title>
+  <link rel="stylesheet" href="cv_style.css">
 </head>
 <body>
   <nav>
@@ -16,21 +16,21 @@ add date time format to time labels
     <a href="../projects/index.html">Projects</a>
     <a href="../contact/index.html">Contact Info</a>
     <a href="#" class="current">Resume/CV</a>
+    <a href="../coursework/index.html">Coursework</a>
     <a href="https://github.com/ICharmU" target="_blank">GitHub</a>
   </nav>
-  <h1>Resume and Coursework</h1>
-  <section id="resume">
-    <header>
+  <!-- <h1>Resume/CV</h1> -->
+  <section class="resume">
+    <!-- <header>
       <h2>Resume</h2>
-    </header>
-    <article id="experience">
+    </header> -->
+    <article class="experience">
       <h3>Experience</h3>
-      <article id="experience-its">
-        <h4 id="experience-its-employer">UCSD ITS Service Desk</h4>
-        <h4 class="experience-jobtitle">Student Technician <time>(9/2024-3/2025)</time></h4>
-        <h4 class="experience-jobtitle">Lead Student Technician <time>(3/2025-6/2025)</time></h4>
-        <h4 id="experience-its-desc">Job Description</h4>
-        <p>
+      <article class="its">
+        <h4 class="employer">UCSD ITS Service Desk</h4>
+        <h4 class="job-title year">Lead Student Technician<time>(3/2025-6/2025)</time></h4>
+        <h4 class="job-title year">Student Technician<time>(9/2024-3/2025)</time></h4>
+        <p class="job-desc">
           Tools: ServiceNOW, TalkDesk, Atlassian, Duo Admin, Cisco ISE, Cisco DNAC, NetMRI, Splunk
         </p>
         <ul>
@@ -52,89 +52,51 @@ add date time format to time labels
         </ul>
       </article>
     </article>
-    <article id="education">
+    <article class="education">
       <h3>Education</h3>
-      <article id="education-ucsd">
-        <h4>University of California, San Diego <time>(2024-2028)</time></h4>
-        <h5>Activities</h5>
+      <article class="ucsd">
+        <h4 class="degree year">B.S. Data Science <time>(2024-2028)</time></h4>
+        <h4 class="college">University of California, San Diego</h4>
+        <h5>Activities:</h5>
         <ul>
           <li>DS3</li>
           <li>Bouldering</li>
           <li>WIC Beginner Programming Competition WI25 (placed 6/23)</li>
           <li>WIC Beginner Programming Competition SP25 (placed 4/21)</li>
         </ul>
-
       </article>
-
-      <article id="education-lapc">
-        <h4>Los Angeles Pierce College <time>(2/2024-6/2024)</time></h4>
+      <article class="lapc">
+        <h4 class="degree year">Dual Enrollment<time>(2/2024-6/2024)</time></h4>
+        <h4 class="college">Los Angeles Pierce College</h4>
         <p>
-          During high school I took Linear Algebra (Math 270) and Multivariable Calculus (Math 263) through evening classes.
+          During high school I took Linear Algebra and Multivariable Calculus through evening classes.
         </p>
       </article>
     </article>
-    <article id="skills">
+    <article class="skills">
       <h3>Skills</h3>
-      <p>
-        I am currently expanding my skillset to include web development.
-      </p>
-      <article id="skills-data">
-        <h4>Data Manipulation + Inference</h4>
-        <p>Python, Pandas, Numpy, sklearn, PyTorch, bs4, regex</p>
-        <h4>Visualization</h4>
-        <p>Plotly, matplotlib, seaborn</p>
-        <h4>Web Dev</h4>
-        <p>JavaScript (learning), HTML, CSS</p>
-        <h4>Analytics</h4>
-        <p>Excel, Power BI, R</p>
+      <article class="skill-list">
+        <div class="a-skill">
+          <h4>Data Manipulation + Inference</h4>
+          <p>Python, Pandas, Numpy, sklearn, PyTorch, bs4, regex</p>
+        </div>
+        <div class="a-skill">
+          <h4>Visualization</h4>
+          <p>Plotly, matplotlib, seaborn</p>
+        </div>
+        <div class="a-skill">
+          <h4>Web Dev</h4>
+          <p>JavaScript (learning), HTML, CSS</p>
+        </div>
+        <div class="a-skill">
+          <h4>Analytics</h4>
+          <p>Excel, Power BI, R</p>
+        </div>
       </article>
     </article>
   </section>
   
   
-  <section id="coursework">
-    <header>
-      <h2>Coursework at UCSD</h2>
-    </header>
-    <p>Many of the assigned titles describe what I learned rather than official course titles.</p>
-    <article id="coursework-dsc">
-      <h3>Data Science</h3>
-      <ul>
-        <li>DSC 106 (IP) - ...</li>
-        <li>DSC 140A (IP) - ...</li>
-        <li>CSE 158R (IP) - ...</li>
-        <li>DSC 80 / Practice of Data Science (S225) - Great content, felt similar to DSC 20 in terms of the learning curve. Solidified foundations in pandas, numpy and sklearn for data manipulation and inference.</li>
-        <li>DSC 30 / Intro to DSA (SP25) - Not a very rigorous or enjoyable class. Learned a little bit of Java.</li>
-        <li>DSC 40B / Algorithms (SP25) - Very fun class. Learned about complexity and graph search algos.</li>
-        <li>DSC 20 / Python Programming (WI25) - My favorite class, I fundamentally relearned Python. Marina is an S tier prof.</li>
-        <li>DSC 40A / Intro to Math for ML (WI25) - Decent class. I forgot all my linear algebra, but this was a useful primer for ML classes.</li>
-        <li>DSC 10 / Intro to Data Science (FA24) - Not too difficult, but made me I realize I need to focus more.</li>
-      </ul>
-    </article>
-    <article id="coursework-math">
-      <h3>Math</h3>
-      <ul>
-        <li>MATH 173A (IP) - ...</li>
-        <li>MATH 189 / EDA and Inference (S225) - Bootstrap bootstrap bootstrap. Conceptually stimulating class. Learned a lot of different test statistics and how to form similar heuristics.</li>
-        <li>MATH 180A / Intro to Probability (WI25) - A more rigorous calculus-based intro to probability.</li>
-        <li>MATH 109 / Intro to Proofs (FA24) - Learned formal math notation and some foundational proof techniques. </li>
-        <li>MATH 183 / Intro to Probability and Stats (S224) - Application of probability and statistics. Not much emphasis on derivation.</li>
-      </ul>
-    </article>
-    <article id="coursework-lign">
-      <h3>Linguistics</h3>
-      <ul>
-        <li>LIGN 101 (IP) - ...</li>
-      </ul>
-    </article>
-    <article id="coursework-misc">
-      <h3>Miscellaneous</h3>
-      <ul>
-        <li>MGT 180 / Business Finance (SP25) - Learned a lot of financial lingo. Financial modeling in Excel.</li>
-        <li>USP 25 / Intro to Real Estate (FA24) - Learned Real Estate terminology and Excel.</li>
-      </ul>
-    </article>
-  </section>
 
 </body>
 </html>
