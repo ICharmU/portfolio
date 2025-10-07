@@ -1,2 +1,11 @@
-@import url("../style.css")
- 
+@import url("../style.css");
+
+h2 {
+	font-size: 4em;	
+	margin-bottom: 20px;
+}
+
+h3 {
+	font-size: 3em;
+	margin-bottom: 12px;;
+}
