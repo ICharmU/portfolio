@@ -6,6 +6,7 @@
 :root {
   --color-accent: oklch(0.4667 0.2089 275);
   --background-color-accent: oklch(0.939 0.0326 275);
+  color-scheme: dark;
 }
 
 h1 {
@@ -22,6 +23,7 @@ body {
   font: 100%/1.5 system-ui;
   max-width: 100ch;
   margin-inline: max(1em, (100% - 100ch) / 2);
+  margin-top: 8px;
 }
 
 img {
