@@ -2,11 +2,11 @@
   margin-top: 0;
 }
 
-
 :root {
   --color-accent: oklch(0.4667 0.2089 275);
   --background-color-accent: oklch(0.939 0.0326 275);
-  color-scheme: dark;
+  color-scheme: light dark;
+  --border-color: light-dark(oklch(0.8 0.03 200), oklch(60% 0.1 200 / 0.4));
 }
 
 h1 {
@@ -33,27 +33,37 @@ img {
 nav {
   display: flex;
   margin-bottom: 32px;
-  border-bottom: 1px solid oklch(0.8 0.03 200);
+  border-bottom: 1px solid var(--border-color);
+  a {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+    transition: background-color 0.2s ease-in-out 0.05s;
+  }
+  :hover {
+    border-bottom: 0.4em solid var(--color-accent);
+    padding-bottom: 0.4em;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 55%);
+  }
 }
 
-nav > a {
-  flex: 1;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  padding: 0.5em;
-  transition: background-color 0.2s ease-in-out 0.05s;
-}
-
-a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
-  padding-bottom: 0.4em;
-  background-color: oklch(from var(--background-color-accent) 95% 5% h);
+select {
+  font-size: inherit;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
 }
 
 .current {
   padding-bottom: 0.4em;
-  border-bottom: 0.4em solid oklch(0.9051 0.0174 248.02);
+  border-bottom: 0.4em solid var(--border-color);
 }
 
-
+.color-scheme {
+  display: inline-block;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 80%;
+}
