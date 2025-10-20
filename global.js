@@ -32,7 +32,7 @@ for (let p of pages) {
     );
 }
 
-preferredColorScheme = matchMedia("(prefers-color-scheme: light)").matches ? "Light" : "Dark";
+let preferredColorScheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "Light" : "Dark";
 document.body.insertAdjacentHTML(
     "afterbegin",
     `
@@ -51,21 +51,21 @@ const setColorScheme = (preference) => {
     document.documentElement.style.setProperty("color-scheme", preference);
 }
 
-select = document.querySelector("select");
+let select = document.querySelector("select");
 select.addEventListener("input", event => {
-    preference = event.target.value
+    let preference = event.target.value
     setColorScheme(preference);
     localStorage.colorScheme = preference;
     // console.log(`color scheme changed to ${event.target.value}`);
 });
 
 if ("colorScheme" in localStorage) {
-    preference = localStorage.colorScheme;
+    let preference = localStorage.colorScheme;
     setColorScheme(preference);
     select.value = preference;
 }
 
-form = document.querySelector("form");
+let form = document.querySelector("form");
 form?.addEventListener("submit", event => {
     event.preventDefault();
     data = new FormData(form);
@@ -78,6 +78,35 @@ form?.addEventListener("submit", event => {
     location.href = build_url;
 });
 
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
 
+    if (!response.ok) {
+        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+    console.log(response)
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel='h2') {
+    containerElement.innerHTML = '';
+    for (let project of projects) {
+        const article = document.createElement('article');
+        article.innerHTML = `
+            <h2>${project.title}</h2>
+            <img src="${project.image}" alt="${project.title}">
+            <p>${project.description}</p>
+        `;
+        containerElement.appendChild(article);
+    }
+}
 
 
