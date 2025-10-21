@@ -100,8 +100,10 @@ export function renderProjects(projects, containerElement, headingLevel='h2') {
     containerElement.innerHTML = '';
     for (let project of projects) {
         const article = document.createElement('article');
+        // include URL if it exists, otherwise don't hyperlink the project title
+        const insert_url = project.url !== "none" ? project.url : "";
         article.innerHTML = `
-            <h2>${project.title}</h2>
+            <${headingLevel}>${insert_url.length > 0 ? `<a href=${insert_url}>` : ""}${project.title}${insert_url?.length > 0 ? `</a>` : ""}</${headingLevel}>
             <img src="${project.image}" alt="${project.title}">
             <p>${project.description}</p>
         `;

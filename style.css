@@ -22,6 +22,10 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
+article > p {
+  padding-inline: 20px;
+}
+
 body {
   accent-color: var(--color-accent);
   font: 100%/1.5 system-ui;
@@ -30,8 +34,19 @@ body {
   margin-top: 8px;
 }
 
+article > img {
+  display: block;
+  min-height: 10px;
+  max-height: 100px;
+  min-width: 10px;
+  max-width: 100px;
+  aspect-ratio: 1;
+}
+
 img {
+  aspect-ratio: 1;
   width: 100%;
+  justify-self: center;
 }
 
 nav {
