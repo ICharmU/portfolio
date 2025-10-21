@@ -3,14 +3,14 @@
         "title": "Power Outage Analysis",
         "year": "2025",
         "url": "https://icharmu.github.io/power_outage_analysis/",
-        "image": "/projects/images/power_outage_cropped.png",
+        "image": "projects/images/power_outage_cropped.png",
         "description": "To learn more about electrical infrastructure I analyzed major power outages from 2000 to 2016. I performed EDA, extracted and engineered features, and predicted the outage durations using regression and random forests."
     },
     {
         "title": "Alphabet Inc. Stock Analysis",
         "year": "2025",
         "url": "https://drive.google.com/file/d/1PphRramTUIIvqI3GOeUflACQnp10zlWO/view?usp=sharing",
-        "image": "/projects/images/google_logo.png",
+        "image": "projects/images/google_logo.png",
         "description": "I analyzed Alphabet to understand why its stock was priced with a significantly lower P/E than its peers. Using public financial statements I forecasted Alphabet’s value using peer group and historical-based approaches."
     },
     {
