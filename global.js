@@ -105,7 +105,7 @@ export function renderProjects(projects, containerElement, headingLevel='h2') {
         console.log(project.image);
         const insert_url = project.url !== "none" ? project.url : "";
         let image_path = BASE_PATH + project.image;
-        image_path = image_path.includes("https") ? project.image : image_path;
+        image_path = image_path.includes("https") && !image_path.includes("icharmu") ? project.image : image_path;
         console.log(image_path);
         article.innerHTML = `
             <${headingLevel}>${insert_url.length > 0 ? `<a href=${insert_url}>` : ""}${project.title}${insert_url?.length > 0 ? `</a>` : ""}</${headingLevel}>
