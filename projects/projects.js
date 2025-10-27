@@ -41,6 +41,7 @@ const renderSearch = (selectedProjects) => {
             .attr("fill", colors(ix));
     });
 
+    let svg = d3.select('svg');
     let legend = d3.select(".legend");
     data.forEach((d, ix) => {
         let currYear = d.label;
@@ -51,19 +52,66 @@ const renderSearch = (selectedProjects) => {
             .attr("class", `chart-${ix}`)
             .html(`<span class="swatch"></span> ${currYear} <em>(${d.value})</em>`);
     });
+
+    let selectedIndex = -1;
+    pieQuery = "";
+    svg.selectAll('path').remove();
+    arcs.forEach((arc, i) => {
+        svg.append('path')
+            .attr('d', arc)
+            .attr('fill', colors(i))
+            .on('click', () => {
+                legend.selectAll('li')
+                    .attr('class', (_, ix) => {
+                        return ""
+                    });
+
+                quickRender();
+                selectedIndex = selectedIndex === i ? -1 : i;
+                pieQuery = selectedIndex === -1 ? "" : data[selectedIndex].label;
+                svg.selectAll("path")
+                    .attr("class", (_, idx) => {
+                        if (idx === selectedIndex) {
+                            legend
+                                .selectAll('li')
+                                .attr('class', (_, ix) => {
+                                    if (ix === idx) {
+                                        return "selected";
+                                    }
+                                });
+                            return "selected";
+                        }
+                    });
+                quickRender();
+            });
+    });
+    quickRender();
 };
 
-// trying to get unique years
+
+
+let pieQuery = "";
+let query = "";
+
+const quickRender = () => {
+    let searchProjects = projects.filter(project => {
+    let projectFullData = Object.values(project).join("\n").toLowerCase();
+        return projectFullData.includes(query) && projectFullData.includes(pieQuery);
+    });
+    renderProjects(searchProjects, projectsContainer, "h2");
+};
+
 renderSearch(projects);
 
-let query = "";
 let searchInput = document.querySelector(".searchBar");
+
+
 
 searchInput.addEventListener("input", event => {
     query = event.target.value.toLowerCase();
     let searchProjects = projects.filter(project => {
         let projectFullData = Object.values(project).join("\n").toLowerCase();
-        return projectFullData.includes(query);
+        return projectFullData.includes(query) && projectFullData.includes(pieQuery);
     });
     renderProjects(searchProjects, projectsContainer, "h2");
 
@@ -73,4 +121,5 @@ searchInput.addEventListener("input", event => {
     renderSearch(searchProjects);
 });
 
-// continue with making sure the colors don't change when querying
+
+

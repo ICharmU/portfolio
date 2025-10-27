@@ -58,3 +58,22 @@ li {
   column-gap: 30px;
   align-items: center;
 }
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.selected {
+  --color: oklch(59.97% 0.18053 359.807) !important;
+
+  &:is(path) {
+    fill: var(--color) !important;
+  }
+}
