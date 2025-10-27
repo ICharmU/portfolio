@@ -12,3 +12,49 @@ article {
   gap: 1em;
 }
 
+time {
+  display: block;
+  text-align: center;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+.swatch {
+  display: inline-block;
+  height: 25px;
+  aspect-ratio: 1/1;
+  background-color: var(--color);
+  vertical-align: middle;
+  border-radius: 25%;
+}
+
+.legend {
+  flex: 1;
+  padding-left: 0px;
+  border: rgb(174, 209, 197) solid 1.5px;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 0px;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  column-gap: 0px;
+}
+
+li {
+  align-items: left;
+  list-style-type: none;
+}
+
+.chart-container {
+  display: flex;
+  flex: 1;
+  column-gap: 30px;
+  align-items: center;
+}
