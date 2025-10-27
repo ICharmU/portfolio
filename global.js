@@ -97,16 +97,18 @@ export async function fetchJSON(url) {
 }
 
 export function renderProjects(projects, containerElement, headingLevel='h2') {
+    projects = projects.sort((b, a) => parseInt(a.year) - parseInt(b.year));
     containerElement.innerHTML = '';
     const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? "/" : "/portfolio/";
     for (let project of projects) {
         const article = document.createElement('article');
         // include URL if it exists, otherwise don't hyperlink the project title
-        console.log(project.image);
         const insert_url = project.url !== "none" ? project.url : "";
         let image_path = BASE_PATH + project.image;
         image_path = image_path.includes("https") && !image_path.includes("icharmu") ? project.image : image_path;
-        console.log(image_path);
+        if (!project.description.includes("<time>")) {
+            project.description += `<br><time>c. ${project.year}</time>`
+        }
         article.innerHTML = `
             <${headingLevel}>${insert_url.length > 0 ? `<a href=${insert_url}>` : ""}${project.title}${insert_url?.length > 0 ? `</a>` : ""}</${headingLevel}>
             <img src="${image_path}" alt="${project.title}">
