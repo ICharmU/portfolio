@@ -15,7 +15,7 @@ let numProjects = await renderProjects(projects, projectsContainer, "h2");
 title.innerHTML = `${numProjects} ${title.innerHTML}`;
 
 // Search
-const renderSearch = (selectedProjects, yearColors=null) => {
+const renderSearch = (selectedProjects) => {
     selectedProjects = selectedProjects.sort((b, a) => parseInt(a.year) - parseInt(b.year));
 
     let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
@@ -34,14 +34,6 @@ const renderSearch = (selectedProjects, yearColors=null) => {
     let arcs = arcData.map((d) => arcGenerator(d));
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-    if (yearColors === null) {
-        yearColors = arcs.forEach((arc, ix) => {
-            console.log("ix", ix, projects[ix].year);
-            colors(ix);
-        });
-    }
-    console.log(52, colors);
-
     arcs.forEach((arc, ix) => {
         d3.select("svg")
             .append("path")
@@ -51,29 +43,18 @@ const renderSearch = (selectedProjects, yearColors=null) => {
 
     let legend = d3.select(".legend");
     data.forEach((d, ix) => {
-        let yearColor = allYearColors.length == 0 ? colors(ix) : allYearColors[d.label];
-        // console.log(33, yearColor);
-        yearColors[d.label] = yearColor;
+        let currYear = d.label;
+        let yearColor = colors(ix);
+
         legend.append("li")
             .attr("style", `--color:${yearColor}`)
             .attr("class", `chart-${ix}`)
-            .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+            .html(`<span class="swatch"></span> ${currYear} <em>(${d.value})</em>`);
     });
-
-    return yearColors;
 };
 
-let allYears = projects.forEach(p => {
-    console.log(p.year);
-    return p.year;
-});
-console.log(allYears);
-allYears = new Set(allYears);
-console.log(allYears);
-console.log("xlxlx");
-let allYearColors = [];
-allYearColors = renderSearch(projects);
-console.log(allYearColors);
+// trying to get unique years
+renderSearch(projects);
 
 let query = "";
 let searchInput = document.querySelector(".searchBar");
@@ -93,5 +74,3 @@ searchInput.addEventListener("input", event => {
 });
 
 // continue with making sure the colors don't change when querying
-
-

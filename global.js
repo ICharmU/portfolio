@@ -123,4 +123,3 @@ export async function fetchGithubData(username) {
     const URL = `https://api.github.com/users/${username}`;
     return fetchJSON(URL);
 }
-
