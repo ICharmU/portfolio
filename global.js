@@ -4,8 +4,12 @@ let pages = [
     {url: "projects/", title: "Projects"},
     {url: "cv/", title: "Resume"},
     {url: "coursework/", title: "Coursework"},
+    {url: "meta/", title: "Meta"},
     {url: "https://github.com/ICharmU", title: "GitHub"},
 ];
+
+// rerun after after any commits
+// npx elocuent -d . -o meta/loc.csv --spaces 2
 
 let nav = document.createElement("nav");
 document.body.prepend(nav);

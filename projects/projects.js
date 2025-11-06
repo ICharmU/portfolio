@@ -53,7 +53,6 @@ const renderSearch = (selectedProjects) => {
     });
 };
 
-// trying to get unique years
 renderSearch(projects);
 
 let query = "";
@@ -72,5 +71,3 @@ searchInput.addEventListener("input", event => {
     document.querySelector(".legend").innerHTML = "";
     renderSearch(searchProjects);
 });
-
-// continue with making sure the colors don't change when querying
