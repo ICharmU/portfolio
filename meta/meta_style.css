@@ -1,0 +1,80 @@
+dl {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+dt {
+  font-weight: bold;
+  font-size: 18px;
+  grid-row: 1 / span 1;
+}
+
+dd {
+  font-weight: none;
+  font-size: 16px;
+  grid-row: 2/ span 1;
+  margin-inline-start: 0px;
+}
+
+.gridlines {
+  color: rgb(217, 215, 215);
+}
+
+dl.info {
+  margin: 0;
+  grid-template-rows: repeat(2, 1fr);
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+.add-frost {
+  background-color: rgba(176, 170, 255, 0.1); /* Semi-transparent white background */
+  border-radius: 15px; /* Rounded corners for a softer look */
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+  
+  /* The core of the frosted glass effect */
+  backdrop-filter: blur(10px); /* Adjust blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For older WebKit browsers */
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
