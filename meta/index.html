@@ -34,5 +34,21 @@
   </dl>
   <p id="selection-count">No commits selected</p>
   <dl id="language-breakdown" class="stats"></dl>
+
+  <label>
+    Show commits until:
+    <input type="range" min=0 max=100 id="commit-progress" value=100>
+    <time id="commit-slider-time">Time</time>
+  </label>
+  <dl id="files">
+  <!-- we want the following structure for each file:
+    <div>
+      <dt>
+        <code>{file.name}</code>
+      </dt>
+      <dd>{file.lines.length} lines</dd>
+    </div>
+    -->
+  </dl>
   </body>
 </html>
