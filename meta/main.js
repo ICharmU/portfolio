@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 const loadData = async () => {
   const data = await d3.csv("loc.csv", row => ({
@@ -323,6 +324,8 @@ tooltip.classList.add("add-frost");
 let data = await loadData();
 
 let commits = processCommits(data);
+// Sort commits by datetime for proper chronological scrollytelling
+commits = d3.sort(commits, d => d.datetime);
 
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
@@ -338,6 +341,7 @@ let timeScale = d3
   ])
   .range([0, 100]);
 let commitMaxTime = timeScale.invert(commitProgress);
+let maxTimeReached = commitMaxTime; // Track the maximum time we've reached
 console.log(commitMaxTime);
 
 const dateSlider = document.getElementById("commit-progress");
@@ -468,3 +472,100 @@ dots
 onTimeSliderChange();
 
 console.log(timeScale.domain());
+
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+		On ${d.datetime.toLocaleString('en', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    })},
+		I made <a href="${d.commit_url}" target="_blank">${
+      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+    }</a>.
+		I edited ${d.numLines} lines across ${
+      d3.rollups(
+        d.lines,
+        (D) => D.length,
+        (d) => d.file,
+      ).length
+    } files.
+		Then I looked over all I had made, and I saw that it was very good.
+	`,
+  );
+
+function onStepEnter(response) {
+  console.log(response);
+  
+  // Get the step index from the response
+  const rawStepIndex = response.index;
+  
+  if (rawStepIndex >= commits.length - 1) {
+    // If we're past the last commit, stick to showing all commits
+    commitMaxTime = d3.max(commits, (d) => d.datetime);
+    maxTimeReached = commitMaxTime;
+    
+    // Update the time scale progress value
+    commitProgress = 100;
+    
+    // Update the slider position to max
+    dateSlider.value = commitProgress;
+    commitTime.innerText = commitMaxTime.toLocaleString();
+    
+    // Show all commits
+    filteredCommits = commits;
+    
+    // Update the visualizations
+    updateScatterPlot(data, filteredCommits);
+    updateFilesList(filteredCommits);
+    
+    console.log(`Scrolled past last commit (step ${rawStepIndex}), showing all ${filteredCommits.length} commits (sticky mode)`);
+  } else {
+    // Normal step progression - but only if we haven't been in sticky mode or we're going backwards
+    const targetCommit = commits[rawStepIndex];
+    
+    if (targetCommit) {
+      // Only update if this step's time is before or equal to our max reached time
+      // This allows going backwards but prevents resetting when coming back from sticky mode
+      const targetTime = targetCommit.datetime;
+      
+      if (targetTime <= maxTimeReached || rawStepIndex === 0) {
+        commitMaxTime = targetTime;
+        
+        // Update max time reached if we're progressing forward
+        if (targetTime > maxTimeReached) {
+          maxTimeReached = targetTime;
+        }
+        
+        // Update the time scale progress value
+        commitProgress = timeScale(commitMaxTime);
+        
+        // Update the slider position to reflect the scroll position
+        dateSlider.value = commitProgress;
+        commitTime.innerText = commitMaxTime.toLocaleString();
+        
+        // Filter commits up to this time
+        filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+        
+        // Update the visualizations
+        updateScatterPlot(data, filteredCommits);
+        updateFilesList(filteredCommits);
+        
+        console.log(`Scrolled to step ${rawStepIndex}, showing ${filteredCommits.length} commits up to ${commitMaxTime}`);
+      }
+    }
+  }
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
+
